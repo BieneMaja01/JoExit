@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>JoExit</title>
+    <link rel="stylesheet" href="body.css">
+    <style>
+        body {
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-gap: 10px;
+            padding: 20px;
+        }
+        .tile {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .tile img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        .tile span {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+            text-align: center;
+            color: black;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .tile:hover img,
+        .tile:active img {
+            opacity: 0;
+        }
+        .tile:hover span,
+        .tile:active span {
+            opacity: 1;
+        }
+        h1 {
+            font-size: 1.5em;
+            text-align: left;
+            padding: 10px;
+        }
+        #flying-face {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Jo und die Entrümpelungsmethode (Fensteredition). </h1>
+    <div class="grid">
+        <!-- Kacheln mit Bildern und Text -->
+        <div class="tile"><img src="Wasserflasche.avif.png" alt="War eh schon März"><span>Wollte schauen ob die platzt.</span></div>
+        <div class="tile"><img src="Fische.png" alt="Bild 2"><span>Ich dachte die lernen fliegen.</span></div>
+        <div class="tile"><img src="Drucker.webp.png" alt="Bild 3"><span>Ach den hast du noch benutzt?</span></div>
+        <div class="tile"><img src="Weihnachtsbaum.png" alt="Bild 4"><span>War eh schon März.</span></div>
+        <div class="tile"><img src="Klopapier.jpeg.png" alt="Bild 5"><span>Windtest</span></div>
+        <div class="tile"><img src="Spiegel.png" alt="Bild 6"><span>Ich wollte sehen wie ich beim werfen aussehe.</span></div>
+        <div class="tile"><img src="Pflanze.jpeg.png" alt="Bild 7"><span>Ach das war deine?</span></div>
+        <div class="tile"><img src="Wlan.jpg.png" alt="Bild 8"><span>Wir bekommen doch eh einen neuen in 4 Wochen.</span></div>
+        <div class="tile"><img src="Brille.jpg.png" alt="Bild 15"><span>Cornelius wohnt ja eh nicht ganz oben.</span></div>
+
+        <div class="tile"><img src="Schlüssel.png" alt="Bild 9"><span>Tür ist doch eh immer offen.</span></div>
+        <div class="tile"><img src="Scheiße.png" alt="Bild 10"><span>Achso ich baue hier oben Gras an. </span></div>
+        <div class="tile"><img src="chalkbag.jpg.png" alt="Bild 11"><span>Woher wusstest du, dass das meiner ist.</span></div>
+        <div class="tile"><img src="Ritterhelm.jpeg.png" alt="Bild 12"><span>Echt? Das war meiner?</span></div>
+        <div class="tile"><img src="Socke.jpeg.png" alt="Bild 13"><span>Hatte nur noch einen.</span></div>
+        <div class="tile"><img src="zahnbürste.webp.png" alt="Bild 14"><span>Ne. Das ist nicht meine. Benutze immer deine. </span></div>
+        <div class="tile"><img src="Katze.png" alt="Bild 15"><span>( ͡◉ ͜ʖ ͡◉)</span></div>
+        <div class="tile"><img src="handy.png" alt="Bild 15"><span>Es hatte nur noch 10%.</span></div>
+        <div class="tile"><img src="Kabel.png" alt="Bild 15"><span>Das war so ein Wirrwarr.</span></div>
+        <div class="tile"><img src="Ton.png" alt="Bild 15"><span>Ich habe bisschen getöpfert.</span></div>
+        <div class="tile"><img src="teppcih.png" alt="Bild 15"><span>Brauch keine zwei Teppiche.</span></div>
+        <div class="tile"><img src="Filzstift.avif.png" alt="Bild 15"><span>Ich konnte ihre innere Leere nicht ertragen.</span></div>
+        <div class="tile"><img src="uhr.jpeg.png" alt="Bild 15"><span>Die war nie in meinem Zimmer.</span></div>
+        <div class="tile"><img src="Bettdecke.jpg.png" alt="Bild 15"><span>Ja war schon warm letzte Nacht.</span></div>
+        <div class="tile"><img src="Sessel.jpeg.png" alt="Bild 15"><span>Der hat so gewackelt... ah ne das war der gar nicht.</span></div>
+        <div class="tile"><img src="bild.jpeg.png" alt="Bild 15"><span>Das hast du gemalt? Schön!!</span></div>
+        <div class="tile"><img src="anal.png" alt="Bild 15"><span>Die habe ich wohl im Garten vergessen.</span></div>
+        <div class="tile"><img src="Teller.jpg.png" alt="Bild 15"><span>Unten ist die Küche näher.</span></div>
+        <div class="tile"><img src="Koffer.jpeg.png" alt="Bild 15"><span>Schon mal was von Vanlife gehört?</span></div>
+        <div class="tile"><img src="Staubsauger.jpeg.png" alt="Bild 15"><span>Der Beutel war voll.</span></div>
+        <div class="tile"><img src="Müll.png" alt="Bild 15"><span>Ja ich mache das  nacher weg.</span></div>
+        <div class="tile"><img src="Katze 2.png" alt="Bild 15"><span>Ist das nicht KWIIKWII???</span></div>
+        <div class="tile"><img src="kaffe.png" alt="Bild 15"><span>Wollte Meo damit abwerfen.</span></div>
+        <div class="tile"><img src="Auto.png" alt="Bild 15"><span>Tank war leer glaub.</span></div>
+        <div class="tile"><img src="geld.png" alt="Bild 15"><span>Papier vergeht.</span></div>
+        <div class="tile"><img src="kleid.png" alt="Bild 15"><span>Ach das war deins?</span></div>
+        <div class="tile"><img src="person.png" alt="Bild 15"><span>Achso du wohnst hier auch?</span></div>
+        <div class="tile"><img src="laptop.png" alt="Bild 15"><span>Das war ausversehen.</span></div>
+        <div class="tile"><img src="schuhe.png" alt="Bild 15"><span>Ja sind deine, aber halt super hässlich.</span></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <style>
+        #flying-face {
+            position: absolute;
+            width: 150px; /* Größe des Gesichts */
+            height: 150px;
+        }
+    </style>
+    <img id="flying-face" src="Jos.png" alt="fliegendes Gesicht";>
+    
+    <script>
+        // Funktion für zufällige Bewegung des Gesichts
+        function moveFace() {
+            const face = document.getElementById("flying-face");
+            const maxX = window.innerWidth - 150;
+            const maxY = document.body.scrollHeight - 150;
+            
+            face.style.left = Math.random() * maxX + "px";
+            face.style.top = Math.random() * maxY + "px";
+        }
+        
+        setInterval(moveFace, 1000);
+    </script>
+    <audio id="fall-sound" src="crash.mp3"></audio>
+    <audio id="fall-sound" src="fall-sound.mp3"></audio>
+
+<script>
+    let tilesCollapsed = false;
+
+    function checkScroll() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            collapseTiles();
+        } else {
+            resetTiles();
+        }
+    }
+
+    function collapseTiles() {
+        if (tilesCollapsed) return;
+        tilesCollapsed = true;
+
+        const tiles = document.querySelectorAll(".tile");
+        const sound = document.getElementById("fall-sound");
+
+        tiles.forEach((tile, index) => {
+            let delay = index * 30; // Kleine Verzögerung für realistischeres Wackeln
+            setTimeout(() => {
+                tile.style.transition = "transform 0.15s ease-in-out";
+                tile.style.transform = `translateY(15px) rotate(${Math.random() * 10 - 5}deg)`;
+            }, delay);
+
+            setTimeout(() => {
+                tile.style.transform = `translateY(-10px) rotate(${Math.random() * 5 - 2.5}deg)`;
+            }, delay + 150);
+
+            setTimeout(() => {
+                tile.style.transform = `translateY(5px) rotate(${Math.random() * 3 - 1.5}deg)`;
+            }, delay + 300);
+
+            setTimeout(() => {
+                tile.style.transform = `translateY(0) rotate(0)`;
+            }, delay + 450);
+        });
+
+        sound.play();
+    }
+
+    function resetTiles() {
+        if (!tilesCollapsed) return;
+        tilesCollapsed = false;
+
+        const tiles = document.querySelectorAll(".tile");
+
+        tiles.forEach(tile => {
+            tile.style.transition = "transform 0.3s ease-in-out";
+            tile.style.transform = "none";
+        });
+    }
+
+    window.addEventListener("scroll", checkScroll);
+</script>
+<style>
+    .bottom-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        gap: 20px;
+    }
+
+    .window-tile {
+        width: 120px;
+        height: 120px;
+        border: 4px solid black;
+        position: relative;
+        background: lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .button {
+        width: 100px;
+        height: 50px;
+        background: red;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        cursor: pointer;
+        animation: blink 1s infinite alternate;
+        border-radius: 10px;
+    }
+
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+</style>
+<style>
+    .bottom-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        gap: 20px;
+    }
+
+    /* Fenster-Stil */
+    .window-tile {
+        width: 350px;
+        height: 350px;
+        border: 6px solid black;
+        background-color: transparent;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Fensterkreuz */
+    .window-tile::before,
+    .window-tile::after {
+        content: "";
+        position: absolute;
+        background: black;
+    }
+
+    .window-tile::before {
+        width: 6px;
+        height: 100%;
+    }
+
+    .window-tile::after {
+        width: 100%;
+        height: 6px;
+    }
+
+    /* Blinkender Knopf */
+    .button {
+        width: 120px;
+        height: 50px;
+        background: rgb(255, 217, 0);
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        cursor: pointer;
+        animation: blink 1s infinite alternate;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 128, 255, 0.7);
+    }
+
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+</style>
+
+<div class="bottom-section">
+    <div class="window-tile" id="window"></div>
+    <div class="button" onclick="throwTiles()">Press Here</div>
+</div>
+<script>
+    function throwTiles() {
+        const tiles = document.querySelectorAll(".tile");
+        const windowTile = document.getElementById("window");
+
+        tiles.forEach(tile => {
+            let windowRect = windowTile.getBoundingClientRect(); // Position des Fensters
+            let tileRect = tile.getBoundingClientRect();
+
+            let centerX = windowRect.left + windowRect.width / 2;
+            let centerY = windowRect.top + windowRect.height / 2;
+
+            let tileX = tileRect.left + tileRect.width / 2;
+            let tileY = tileRect.top + tileRect.height / 2;
+
+            let distanceX = centerX - tileX;
+            let distanceY = centerY - tileY;
+
+            let rotate = (Math.random() - 0.5) * 360; // Zufällige Drehung
+
+            // Kachel bewegt sich zum Fenster
+            tile.style.transition = "transform 1s ease-in-out, opacity 0.5s ease-out 1s";
+            tile.style.transform = `translate(${distanceX}px, ${distanceY}px) scale(0.5) rotate(${rotate}deg)`;
+            tile.style.opacity = "0"; // Verschwinden nach der Bewegung
+        });
+
+        // Nach 1,5 Sekunden endgültig verschwinden
+        setTimeout(() => {
+            tiles.forEach(tile => {
+                tile.style.display = "none";
+            });
+        }, 1500);
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+</body>
+</html>
