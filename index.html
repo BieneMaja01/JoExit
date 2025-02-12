@@ -40,12 +40,14 @@
             position: absolute;
             opacity: 0;
             transition: opacity 0.3s ease;
-            font-size: 14px;
+            font-size: 11px;
             text-align: center;
             color: black;
             background: rgba(255, 255, 255, 0.8);
             padding: 5px;
             border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
         }
         .tile:hover img,
         .tile:active img {
@@ -55,29 +57,33 @@
         .tile:active span {
             opacity: 1;
         }
-        h1 {
-            font-size: 1.5em;
-            text-align: left;
-            padding: 10px;
-        }
+       
+        
         #flying-face {
             position: absolute;
             width: 80px;
             height: 80px;
         }
         @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-                padding: 10px;
-            }
-            h1 {
-                font-size: 1.2em;
-            }
-        }
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, max-content)); /* Kein Zusammenkleben */
+        gap: 10px; /* Fester Abstand */
+        padding: 10px;
+    }
+
+    .tile {
+        width: 80px;
+        height: 80px;
+    }
+
+    
+}
+
     </style>
 </head>
 <body>
-    <h1>Jo und die Entrümpelungsmethode (Fensteredition). </h1>
+    <h2>Jo und die Entrümpelungsmethode </h2>
+    <h1>(Fensteredition)...</h1>
     <div class="grid">
         <!-- Kacheln mit Bildern und Text -->
         <div class="tile"><img src="Wasserflasche.avif.png" alt="War eh schon März"><span>Wollte schauen ob die platzt.</span></div>
@@ -217,102 +223,87 @@
     window.addEventListener("scroll", checkScroll);
 </script>
 <style>
-    .bottom-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-        gap: 20px;
-    }
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    gap: 20px;
+}
 
-    .window-tile {
-        width: 120px;
-        height: 120px;
-        border: 4px solid black;
-        position: relative;
-        background: lightblue;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-    }
+/* Fenster-Stil mit Hintergrundbild */
+.window-tile {
+    width: 350px;
+    height: 350px;
+    border: 6px solid black;
+    background-image: url(fenster.png); /* Hier dein Bild */
+    background-size: cover;
+    background-position: center;
+    position: relative;  /* WICHTIG: Absolut entfernt, damit es im Flow bleibt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+}
 
-    .button {
-        width: 100px;
-        height: 50px;
-        background: red;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        line-height: 50px;
-        cursor: pointer;
-        animation: blink 1s infinite alternate;
-        border-radius: 10px;
-    }
+/* Fensterkreuz */
+.window-tile::before,
+.window-tile::after {
+    content: "";
+    position: absolute;
+    background: black;
+}
 
-    @keyframes blink {
-        0% { opacity: 1; }
-        100% { opacity: 0.5; }
-    }
-</style>
-<style>
-    .bottom-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-        gap: 20px;
-    }
+.window-tile::before {
+    width: 6px;
+    height: 100%;
+}
 
-    /* Fenster-Stil */
-    .window-tile {
-        width: 350px;
-        height: 350px;
-        border: 6px solid black;
-        background-color: transparent;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.window-tile::after {
+    width: 100%;
+    height: 6px;
+}
 
-    /* Fensterkreuz */
-    .window-tile::before,
-    .window-tile::after {
-        content: "";
-        position: absolute;
-        background: black;
-    }
+/* Fenster öffnet sich */
+.window-tile.open {
+    transform: scaleY(0); /* Fenster klappt nach oben */
+}
 
-    .window-tile::before {
-        width: 6px;
-        height: 100%;
-    }
+/* Blinkender und vibrierender Button */
+.button {
+    width: 140px;
+    height: 60px;
+    background: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    margin-top: 20px;
+    animation: shake 0.1s infinite alternate, blink 1s infinite alternate;
+}
 
-    .window-tile::after {
-        width: 100%;
-        height: 6px;
-    }
+/* Button wackelt */
+@keyframes shake {
+    0% { transform: translateX(-5px) rotate(-2deg); }
+    100% { transform: translateX(5px) rotate(2deg); }
+}
 
-    /* Blinkender Knopf */
-    .button {
-        width: 120px;
-        height: 50px;
-        background: rgb(255, 217, 0);
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        line-height: 50px;
-        cursor: pointer;
-        animation: blink 1s infinite alternate;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 128, 255, 0.7);
-    }
+/* Button blinkt */
+@keyframes blink {
+    0% { background: rgb(0, 255, 13); color: white; }
+    100% { background: yellow; color: black; }
+}
 
-    @keyframes blink {
-        0% { opacity: 1; }
-        100% { opacity: 0.5; }
-    }
+
+
+
 </style>
 
 <div class="bottom-section">

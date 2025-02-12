@@ -1,7 +1,5 @@
 body {
-    font-family: uppercase Arial, Helvetica, 'Arial Narrow Bold', sans-serif, uppercase;
-    text-align: left;
-    font-style: oblique;
+    
     letter-spacing:  -0,53px;ch;
     background-color: #ff00d4;
     margin: 0;
@@ -9,10 +7,38 @@ body {
 }
 
 h1 {
+    font-family: uppercase Arial, Helvetica, 'Arial Narrow Bold', sans-serif, uppercase;
+    text-align: center;
+    font-style: oblique;
+    letter-spacing:  -2.5px;
+    background-color: #ff00d4;
+    margin: 0;
+    overflow: hidden;
     color: #000000;
+    font-size: 37px; ;
 
     margin-top: 10px;
 }
+h2 {
+    color: #000000;
+    position: relative;
+    font-size: 60px;
+    line-height: 37px;
+    text-align: center; 
+    font-family: Edwardian Script ITC;
+    letter-spacing: -3px;
+  
+
+
+    
+
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+   
+    
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
@@ -79,18 +105,14 @@ h1 {
     object-fit: cover;
 }
 
-/* Anpassung für kleine Bildschirme */
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        grid-gap: 8px; /* Etwas kleinerer Abstand für mehr Platz */
-    }
 
-    .tile {
+
+
+ .tile {
         width: 80px;
         height: 80px;
     }
-}
+
 
 .grid {
     display: grid;
@@ -116,3 +138,32 @@ h1 {
     height: 100px;
     transition: all 1s ease-in-out;
 }
+.button {
+    width: 140px;
+    height: 60px;
+    background: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    position: relative;
+    animation: shake 0.1s infinite alternate, blink 1s infinite alternate;
+}
+
+/* Button wackelt verrückt */
+@keyframes shake {
+    0% { transform: translateX(-5px) rotate(-2deg); }
+    100% { transform: translateX(5px) rotate(2deg); }
+}
+
+/* Button blinkt */
+@keyframes blink {
+    0% { background: red; color: white; }
+    100% { background: yellow; color: black; }
+}
+
